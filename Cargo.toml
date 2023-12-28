@@ -5,25 +5,20 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-# [workspace]
-# members = [".","entity"]
 
 [dependencies]
-# entity = {path = "entity"}
-
-
-tokio = {features = ["macros", "rt-multi-thread"] }
-salvo = {features = ["affix", "serve-static","oapi"] }
+tokio = {version = "1.35.0" ,features = ["macros", "rt-multi-thread"] }
+salvo = {version = "0.63.1",features = ["affix", "serve-static","oapi"] }
 tracing = "0.1"
-tracing-subscriber = {  features = ["env-filter"] }
-serde = { features = ["derive"] }
+tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+serde = {version = "1.0.192", features = ["derive"] }
 
-sea-orm = { features = [
+sea-orm = {version = "0.12.9", features = [
   "debug-print",
   "runtime-tokio-native-tls",
   "sqlx-sqlite",
   # "sqlx-postgres",
   # "sqlx-mysql",
 ] }
-async-std = {  features = ["attributes", "tokio1"] }
+async-std = {version = "1.11.0",features = ["attributes", "tokio1"] }
 tera = "1.19.1"

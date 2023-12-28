@@ -1,0 +1,29 @@
+[package]
+name = "dreams_api"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# [workspace]
+# members = [".","entity"]
+
+[dependencies]
+# entity = {path = "entity"}
+
+
+tokio = {features = ["macros", "rt-multi-thread"] }
+salvo = {features = ["affix", "serve-static"] }
+
+tracing-subscriber = {  features = ["env-filter"] }
+serde = { features = ["derive"] }
+
+sea-orm = { features = [
+  "debug-print",
+  "runtime-tokio-native-tls",
+  "sqlx-sqlite",
+  # "sqlx-postgres",
+  # "sqlx-mysql",
+] }
+async-std = {  features = ["attributes", "tokio1"] }
+tera = "1.19.1"

@@ -22,6 +22,7 @@ pub async fn setup() -> Router {
             .push(
                 Router::with_path("amc")
                     .push(Router::with_path("add").post(api_message::add))
+                    .push(Router::with_path("list").post(api_message::list))
                     .push(Router::with_path("<id>").get(api_message::get_by_id))
                     .push(Router::with_path("<srv_id>").get(api_message::get_by_srv_id))
                     .push(Router::with_path("update").post(api_message::update))

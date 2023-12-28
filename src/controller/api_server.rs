@@ -1,0 +1,14 @@
+use salvo::prelude::*;
+use crate::
+    app::Result
+;
+
+#[endpoint(tags("apiServerController"))]
+pub async fn add(_req: &mut Request,_depot: &mut Depot) -> Result<()> {
+    Ok(())
+}
+
+#[endpoint(tags("apiServerController"))]
+pub async fn list(_req: &mut Request,_depot: &mut Depot) -> Result<()> {
+    Ok(())
+}

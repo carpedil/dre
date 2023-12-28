@@ -13,7 +13,7 @@ edition = "2021"
 
 
 tokio = {features = ["macros", "rt-multi-thread"] }
-salvo = {features = ["affix", "serve-static"] }
+salvo = {features = ["affix", "serve-static","oapi"] }
 tracing = "0.1"
 tracing-subscriber = {  features = ["env-filter"] }
 serde = { features = ["derive"] }

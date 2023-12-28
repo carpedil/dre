@@ -5,7 +5,7 @@ use crate::{
 use salvo::prelude::*;
 use sea_orm::EntityTrait;
 
-#[handler]
+#[endpoint(tags("apiMessageController"))]
 pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Json<Vec<ApiMessageModel>>> {
     let state = depot
         .obtain::<AppState>()
@@ -18,29 +18,52 @@ pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Json<Vec<ApiM
     Ok(Json(res))
 }
 
-#[handler]
+#[endpoint(tags("apiMessageController"))]
 pub async fn add(req: &mut Request, _depot: &mut Depot) -> Result<String> {
     let am = req.parse_json::<ApiServerModel>().await.unwrap();
     tracing::info!("{:?}",am);
     Ok("".to_string())
 }
 
-#[handler]
-pub async fn del(req: &mut Request, depot: &mut Depot) -> Result<String> {
+#[endpoint(tags("apiMessageController"))]
+pub async fn del(_req: &mut Request, _depot: &mut Depot) -> Result<String> {
     Ok("".to_string())
 }
 
-#[handler]
-pub async fn validation(req: &mut Request, depot: &mut Depot) -> Result<()> {
+#[endpoint(tags("apiMessageController"))]
+pub async fn validation(_req: &mut Request, _depot: &mut Depot) -> Result<()> {
     Ok(())
 }
 
-#[handler]
-pub async fn get_by_id(req: &mut Request, depot: &mut Depot) -> Result<()> {
+#[endpoint(tags("apiMessageController"))]
+pub async fn get_by_id(_req: &mut Request, _depot: &mut Depot) -> Result<()> {
     Ok(())
 }
 
-#[handler]
-pub async fn get_by_srv_id(req: &mut Request, depot: &mut Depot) -> Result<()> {
+#[endpoint(tags("apiMessageController"))]
+pub async fn get_by_srv_id(_req: &mut Request, _depot: &mut Depot) -> Result<()> {
     Ok(())
 }
+
+#[endpoint(tags("apiMessageController"))]
+pub async fn update(_req: &mut Request, _depot: &mut Depot) -> Result<()> {
+    Ok(())
+}
+
+
+#[endpoint(tags("apiMessageController"))]
+pub async fn hostname(_req: &mut Request,_depot: &mut Depot) -> Result<()> {
+    Ok(())
+}
+
+#[endpoint(tags("apiMessageController"))]
+pub async fn state_update(_req: &mut Request,_depot: &mut Depot) -> Result<()> {
+    Ok(())
+}
+
+
+#[endpoint(tags("apiMessageController"))]
+pub async fn script_exec(_req: &mut Request,_depot: &mut Depot) -> Result<()> {
+    Ok(())
+}
+

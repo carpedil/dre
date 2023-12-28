@@ -21,7 +21,7 @@ pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Json<Vec<ApiM
 #[handler]
 pub async fn add(req: &mut Request, _depot: &mut Depot) -> Result<String> {
     let am = req.parse_json::<ApiServerModel>().await.unwrap();
-    println!("{:?}",am);
+    tracing::info!("{:?}",am);
     Ok("".to_string())
 }
 

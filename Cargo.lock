@@ -777,6 +777,7 @@ dependencies = [
  "serde",
  "tera",
  "tokio",
+ "tracing",
  "tracing-subscriber",
 ]
 

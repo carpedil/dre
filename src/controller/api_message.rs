@@ -1,12 +1,12 @@
 use crate::{
-    app::{AppState, Result},
+    app::{AppState, Result, ResultData},
     entity::prelude::{ApiMessage, ApiMessageModel, ApiServerModel},
 };
 use salvo::prelude::*;
 use sea_orm::EntityTrait;
 
 #[endpoint(tags("apiMessageController"))]
-pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Json<Vec<ApiMessageModel>>> {
+pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Json<ResultData<Vec<ApiMessageModel>>>> {
     let state = depot
         .obtain::<AppState>()
         .map_err(|_| StatusError::internal_server_error())?;
@@ -15,7 +15,7 @@ pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Json<Vec<ApiM
         .all(&state.conn)
         .await
         .map_err(|_| StatusError::internal_server_error())?;
-    Ok(Json(res))
+    Ok(Json(ResultData::new(res)))
 }
 
 #[endpoint(tags("apiMessageController"))]

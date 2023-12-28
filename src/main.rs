@@ -5,6 +5,7 @@ mod app;
 mod controller;
 mod entity;
 mod router;
+mod ws;
 
 #[tokio::main]
 async fn main() {

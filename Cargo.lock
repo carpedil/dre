@@ -795,6 +795,7 @@ name = "dreams_api"
 version = "0.1.0"
 dependencies = [
  "async-std",
+ "rust-embed",
  "salvo",
  "sea-orm",
  "serde",

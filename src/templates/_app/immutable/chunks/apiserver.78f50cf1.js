@@ -1,0 +1,1 @@
+const r=async(t,e)=>{const a=await(await fetch("/api/asc/add",{method:"POST",body:JSON.stringify({srv_name:t,default_hdr:e})})).json();if(a.code!=200){alert(a.message);return}return a.message},n=async()=>{const e=await(await fetch("/api/asc/list",{method:"GET"})).json();return e.code!=200?(alert(e.message),[]):e.data};export{r as a,n as g};

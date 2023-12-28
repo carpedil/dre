@@ -38,7 +38,7 @@ pub async fn setup() -> Router {
         )
         .push(
             Router::with_path("amr")
-                .post(api_message::add)
+                .post(api_message_records::add)
                 .push(Router::with_path("<api_id>").get(api_message_records::get_api_id)),
         )
         .push(
@@ -66,6 +66,6 @@ pub async fn setup() -> Router {
                 .title("Todos - SwaggerUI")
                 .into_router("/swagger-ui"),
         );
-        
+
     router
 }

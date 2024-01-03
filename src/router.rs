@@ -52,7 +52,7 @@ pub async fn setup() -> Router {
             .push(
                 Router::with_path("report")
                     .push(Router::with_path("statistic/count").get(api_message_report::statistic_count))
-                    .push(Router::with_path("summarize").get(api_message_report::summarize)),
+                    .push(Router::with_path("record/summary").get(api_message_report::summarize)),
             )
             .push(
                 Router::with_path("ams")

@@ -1,4 +1,5 @@
 use salvo::{prelude::*, serve_static::static_embed};
+use salvo::logging::Logger;
 use rust_embed::RustEmbed;
 use crate::{app::*, controller::*,ws::{self}};
 
@@ -15,6 +16,7 @@ pub async fn setup() -> Router {
 
     let router = Router::new()
         .hoop(affix::inject(state))
+        .hoop(Logger::new())
         // websocket support
         .push(Router::with_path("ws").goal(ws::connect))
         .push(
@@ -60,7 +62,7 @@ pub async fn setup() -> Router {
                     .get(api_message_script::list),
             )
         )
-        .push(Router::with_path("<**>").get(static_embed::<Assets>().fallback("index.html")));
+        .push(Router::with_path("<**path>").get(static_embed::<Assets>().fallback("index.html")));
 
     let doc = OpenApi::new("test api", "3.1.0").merge_router(&router);
 

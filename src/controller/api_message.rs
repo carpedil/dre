@@ -1,9 +1,9 @@
 use crate::{
     app::{AppState, Result, Vo},
-    entity::prelude::{ApiMessage, ApiMessageModel, ApiServerModel},
+    entity::{prelude::{ApiMessage, ApiMessageModel, ApiServerModel}, api_message},
 };
 use salvo::prelude::*;
-use sea_orm::EntityTrait;
+use sea_orm::{EntityTrait, QueryFilter, ColumnTrait};
 
 #[endpoint(tags("apiMessageController"))]
 pub async fn list(_req: &mut Request, depot: &mut Depot) -> Result<Vo<Vec<ApiMessageModel>>> {
@@ -41,8 +41,14 @@ pub async fn get_by_id(_req: &mut Request, _depot: &mut Depot) -> Result<Vo<Stri
 }
 
 #[endpoint(tags("apiMessageController"))]
-pub async fn get_by_srv_id(_req: &mut Request, _depot: &mut Depot) -> Result<Vo<String>> {
-    todo!()
+pub async fn get_by_srv_id(req: &mut Request, depot: &mut Depot) -> Result<Vo<Vec<ApiMessageModel>>> {
+    let srv_id = req.param::<i64>("srv_id").unwrap();
+    let state = depot.obtain::<AppState>()
+    .map_err(|_| StatusError::internal_server_error())?;
+
+    let data = ApiMessage::find().filter(api_message::Column::SrvId.eq(srv_id)).all(&state.conn).await.unwrap();
+    tracing::info!("data size: {}", data.len());
+    Ok(Json(Vo::new(data)))
 }
 
 #[endpoint(tags("apiMessageController"))]

@@ -11,7 +11,7 @@ mod ws;
 async fn main() {
     std::env::set_var("RUST_LOG", "debug");
     tracing_subscriber::fmt::init();
-    let server_url = "0.0.0.0:8090";
+    let server_url = "127.0.0.1:8090";
 
     tracing::info!("Starting server at {server_url}");
    

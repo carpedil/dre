@@ -26,7 +26,7 @@ pub async fn setup() -> Router {
                     .push(Router::with_path("add").post(api_message::add))
                     .push(Router::with_path("list").post(api_message::list))
                     .push(Router::with_path("<id>").get(api_message::get_by_id))
-                    .push(Router::with_path("<srv_id>").get(api_message::get_by_srv_id))
+                    .push(Router::with_path("srv_id/<srv_id>").get(api_message::get_by_srv_id))
                     .push(Router::with_path("update").post(api_message::update))
                     .push(Router::with_path("hostname").post(api_message::hostname))
                     .push(Router::with_path("state/update").post(api_message::state_update))
@@ -62,7 +62,7 @@ pub async fn setup() -> Router {
                     .get(api_message_script::list),
             )
         )
-        .push(Router::with_path("<**path>").get(static_embed::<Assets>().fallback("index.html")));
+        .push(Router::with_path("<**>").get(static_embed::<Assets>().fallback("index.html")));
 
     let doc = OpenApi::new("test api", "3.1.0").merge_router(&router);
 
